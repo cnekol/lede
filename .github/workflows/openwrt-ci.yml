@@ -57,10 +57,10 @@ jobs:
           df -h
       - name: Add luci-app-clash
         run: |
-          cd package
-          mkdir luci-app-clash
-          cd luci-app-clash
-          git clone https://github.com/frainzy1477/luci-app-clash.git
+          git clone https://github.com/frainzy1477/luci-app-clash.git package/luci-app-clash
+      - name: Add passwall
+        run: |
+          git clone https://github.com/xiaorouji/openwrt-passwall.git package/openwrt-passwall
       - name: Update feeds
         run: |
           ./scripts/feeds update -a
@@ -4453,18 +4453,20 @@ jobs:
           # Configuration
           #
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks is not set
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Server=y
+          # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Server is not set
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR is not set
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Server is not set
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
+            CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
+            CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus is not set
-          # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO is not set
+            CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO=y
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
+            CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy=y
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_https_dns_proxy=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
+            CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
+          # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG is not set
+            CONFIG_PACKAGE_luci-app-passwall_INCLUDE_https_dns_proxy=y
+          # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks is not set
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin is not set
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs is not set
           # end of Configuration
